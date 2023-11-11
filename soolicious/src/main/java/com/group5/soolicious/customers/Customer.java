@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Customer {
-    private Integer ID;
+    private Integer id;
 
     private String firstName;
 

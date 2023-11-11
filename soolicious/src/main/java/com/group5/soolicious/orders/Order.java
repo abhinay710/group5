@@ -2,6 +2,7 @@ package com.group5.soolicious.orders;
 
 import java.util.Date;
 
+import com.group5.soolicious.customers.Customer;
 import com.group5.soolicious.customers.CustomerEntity;
 import com.group5.soolicious.employees.Employee;
 
@@ -13,7 +14,7 @@ import lombok.Setter;
 public class Order {
     private int id;
 
-    private CustomerEntity customer;
+    private Customer customer;
 
     private Employee employee;
 

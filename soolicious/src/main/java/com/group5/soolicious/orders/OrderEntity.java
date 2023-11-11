@@ -16,8 +16,13 @@ import jakarta.persistence.Table;
 import com.group5.soolicious.customers.CustomerEntity;
 import com.group5.soolicious.employees.EmployeeEntity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "Orders")
+@Getter
+@Setter
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

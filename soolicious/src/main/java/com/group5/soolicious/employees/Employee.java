@@ -11,13 +11,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Employee {
-    private Integer ID;
+    private Integer id;
 
     private String firstName;
 
     private String lastName;
 
-    private String Designation;
+    private String designation;
 
     private String emailID;
 

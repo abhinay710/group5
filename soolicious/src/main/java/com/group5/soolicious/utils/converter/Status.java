@@ -1,7 +1,7 @@
 package com.group5.soolicious.utils.converter;
 
 public enum Status {
-    ACTIVE('A'), INACTIVE('I');
+    ACTIVE('Y'), INACTIVE('N');
 
     private Character value;
 
