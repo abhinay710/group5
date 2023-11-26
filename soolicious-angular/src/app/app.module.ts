@@ -8,12 +8,18 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-
+import { EmployeeDialogComponent } from './components/employee-dialog/employee-dialog.component';
+import { CustomerDialogComponent } from './components/customer-dialog/customer-dialog.component';
+import { OrderDetailsDialogComponent } from './components/order-details-dialog/order-details-dialog.component';
+import { DessertsComponent } from './components/desserts/desserts.component';
+import { DessertDialogComponent } from './components/dessert-dialog/dessert-dialog.component';
+import { InventoryItemsComponent } from './components/inventory-items/inventory-items.component';
+import { InventoryDialogComponent } from './components/inventory-dialog/inventory-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,13 @@ import { HomeComponent } from './components/home/home.component';
     OrdersComponent,
     LoginComponent,
     HomeComponent,
+    EmployeeDialogComponent,
+    CustomerDialogComponent,
+    OrderDetailsDialogComponent,
+    DessertsComponent,
+    DessertDialogComponent,
+    InventoryItemsComponent,
+    InventoryDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +46,8 @@ import { HomeComponent } from './components/home/home.component';
     NgbTypeaheadModule,
     NgbDropdownModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

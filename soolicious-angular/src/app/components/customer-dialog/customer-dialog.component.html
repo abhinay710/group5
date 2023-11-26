@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="customer.firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="customer.lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneNum">Phone Number:</label>
+        <input type="tel" class="form-control" id="phoneNum" name="phoneNum" [(ngModel)]="customer.phoneNum" required>
+      </div>
+      <div class="form-group">
+        <label for="emailID">Email ID:</label>
+        <input type="email" class="form-control" id="emailID" name="emailID" [(ngModel)]="customer.emailID" required>
+      </div>
+      <!-- <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="customer.password" [disabled]='true' required>
+      </div> -->
+      <div class="form-group">
+        <label for="createdOn">Created On:</label>
+        <input type="date" class="form-control" id="createdOn" name="createdOn" [ngModel]="formatDate(customer.createdOn!)" (ngModelChange)="updateCreatedOn($event)">
+      </div>
+      <div class="form-group">
+        <label for="activeYN">Active Status:</label>
+        <select class="form-control" id="activeYN" name="activeYN" [(ngModel)]="customer.activeYN" required>
+          <option value="ACTIVE">Active</option>
+          <option value="INACTIVE">Inactive</option>
+        </select>
+      </div>
+      <!-- Add other form fields for any remaining properties -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark"
+        (click)="activeModal.dismiss('Cancel click')">Cancel</button>
+        <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
+      </div>
+    </form>
+  </div>

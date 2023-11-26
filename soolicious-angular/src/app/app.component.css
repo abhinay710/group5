@@ -1,4 +1,9 @@
 .custom-container {
-    margin-left: 210px;
-    margin-right: 210px;
-  }
+  margin-left: 210px;
+  margin-right: 210px;
+}
+
+.nav-item.active {
+  background-color: #0d6efd;
+  color: white;
+}

@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 
 import com.group5.soolicious.employees.EmployeeEntity;
 import com.group5.soolicious.utils.converter.Status;
+import com.group5.soolicious.utils.converter.StatusYN;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,10 +28,10 @@ public class DessertEntity {
     private String name;
 
     @Column(name = "glutenFreeYN")
-    private Status glutenFreeYN;
+    private StatusYN glutenFreeYN;
 
     @Column(name = "sugarFreeYN")
-    private Status sugarFreeYN;
+    private StatusYN sugarFreeYN;
 
     @Column(name = "calories")
     private Integer calories;

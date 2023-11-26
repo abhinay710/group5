@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderItem {
-    private Order order;
-
     private Dessert dessert;
 
     private int quantityOrdered;

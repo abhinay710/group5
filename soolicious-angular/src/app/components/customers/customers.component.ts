@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from 'src/app/shared/models/customer';
 import { CustomerService } from 'src/app/shared/service/customer.service';
+import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
 
 @Component({
   selector: 'app-customers',
@@ -13,8 +15,8 @@ export class CustomersComponent implements OnInit {
 	pageSize = 10;
   collectionSize = 0;
   customers: Customer[] = [];
-  filteredCustomers?: Customer[];
-  constructor(private customerService: CustomerService) { }
+  filteredCustomers?: Customer[] = [];
+  constructor(private customerService: CustomerService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -38,5 +40,30 @@ export class CustomersComponent implements OnInit {
       (this.page - 1) * this.pageSize,
       (this.page - 1) * this.pageSize + this.pageSize,
     );
+  }
+
+
+  editCustomer(customer: Customer) {
+    const modalRef = this.modalService.open(CustomerDialogComponent);
+    modalRef.componentInstance.customer = { ...customer };
+    modalRef.componentInstance.modalTitle = 'Edit Customer';
+    modalRef.componentInstance.submitButtonLabel = 'Update';
+
+    modalRef.result.then((result: Customer) => {
+      // Handle the result after the modal is closed
+      if (result) {
+        this.customerService.saveCust(result).subscribe({
+          next: ((resp: Customer) => {
+            const index = this.customers.findIndex((e) => e.id === result.id);
+            if (index !== -1) {
+              this.filteredCustomers![index] = resp;
+            }
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
   }
 }

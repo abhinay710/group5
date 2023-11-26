@@ -1,6 +1,7 @@
 package com.group5.soolicious.orders;
 
 import java.util.Date;
+import java.util.List;
 
 import com.group5.soolicious.customers.Customer;
 import com.group5.soolicious.customers.CustomerEntity;
@@ -37,4 +38,5 @@ public class Order {
     private String specialInstructions;
 
     private String lastUpdated;
+    private List<OrderItem> orderItems;
 }

@@ -2,6 +2,7 @@ package com.group5.soolicious.desserts;
 
 import com.group5.soolicious.employees.EmployeeEntity;
 import com.group5.soolicious.utils.converter.Status;
+import com.group5.soolicious.utils.converter.StatusYN;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +14,9 @@ public class Dessert {
 
     private String name;
 
-    private Status glutenFreeYN;
+    private StatusYN glutenFreeYN;
 
-    private Status sugarFreeYN;
+    private StatusYN sugarFreeYN;
 
     private Integer calories;
 

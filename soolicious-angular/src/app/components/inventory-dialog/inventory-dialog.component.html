@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" (click)="onCloseClick()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #inventoryForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="ingredient">Ingredient:</label>
+            <select class="form-control" id="ingredient" name="ingredient" [(ngModel)]="selectedIngredientId" required>
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ ingredient.name }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="datePurchased">Date Purchased:</label>
+            <input type="date" class="form-control" id="datePurchased" name="datePurchased"
+                [ngModel]="formatDate(inventory.datePurchased!)" (ngModelChange)="updateDatePurchased($event)" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="inventory.quantity"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="date" class="form-control" id="expiryDate" name="expiryDate"
+            [ngModel]="formatDate(inventory.expiryDate!)" (ngModelChange)="updateExpiryDate($event)" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="inventory.price" required>
+        </div>
+        <!-- Add other fields as needed -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
+            <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
+        </div>
+    </form>
+</div>

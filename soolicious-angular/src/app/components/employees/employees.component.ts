@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/shared/models/employee';
 import { EmpService } from 'src/app/shared/service/emp.service';
+import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
 
 @Component({
   selector: 'app-employees',
@@ -13,8 +15,8 @@ export class EmployeesComponent implements OnInit {
 	pageSize = 10;
   collectionSize = 0;
   employees: Employee[] = [];
-  filteredEmps?: Employee[];
-  constructor(private empService: EmpService) { }
+  filteredEmps?: Employee[] = [];
+  constructor(private empService: EmpService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getEmployees();
@@ -38,5 +40,29 @@ export class EmployeesComponent implements OnInit {
       (this.page - 1) * this.pageSize,
       (this.page - 1) * this.pageSize + this.pageSize,
     );
+  }
+
+  editEmployee(employee: Employee) {
+    const modalRef = this.modalService.open(EmployeeDialogComponent);
+    modalRef.componentInstance.employee = { ...employee };
+    modalRef.componentInstance.modalTitle = 'Edit Employee';
+    modalRef.componentInstance.submitButtonLabel = 'Update';
+
+    modalRef.result.then((result: Employee) => {
+      // Handle the result after the modal is closed
+      if (result) {
+        this.empService.saveEmp(result).subscribe({
+          next: ((resp: Employee) => {
+            const index = this.employees.findIndex((e) => e.id === result.id);
+            if (index !== -1) {
+              this.filteredEmps![index] = resp;
+            }
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
   }
 }

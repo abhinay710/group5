@@ -4,16 +4,25 @@
     <div class="d-flex">
       <div class="ml-auto">
         <ul class="navbar-nav">
-          <li *ngIf="loginService.isManagerLoggedIn()" class="nav-item">
+          <li *ngIf="loginService.isManagerLoggedIn() || loginService.isEmployeeLoggedIn()" class="nav-item"
+            routerLinkActive="active">
+            <a class="nav-link" routerLink="/desserts">Desserts</a>
+          </li>
+          <li *ngIf="loginService.isManagerLoggedIn()" class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/employees">Employees</a>
           </li>
-          <li  *ngIf="loginService.isManagerLoggedIn()" class="nav-item">
+          <li *ngIf="loginService.isManagerLoggedIn()" class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/customers">Customers</a>
           </li>
-          <li  *ngIf="loginService.isManagerLoggedIn() || loginService.isEmployeeLoggedIn()" class="nav-item">
+          <li *ngIf="loginService.isManagerLoggedIn() || loginService.isEmployeeLoggedIn()" class="nav-item"
+            routerLinkActive="active">
             <a class="nav-link" routerLink="/orders">Orders</a>
           </li>
-          <li ngbDropdown class="d-inline-blockmb-2">
+          <li *ngIf="loginService.isManagerLoggedIn() || loginService.isEmployeeLoggedIn()" class="nav-item"
+            routerLinkActive="active">
+            <a class="nav-link" routerLink="/inventory-items">Inventory</a>
+          </li>
+          <li *ngIf="loginService.isLoggedIn()" ngbDropdown class="nav-item">
             <a type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
               <i class="bi bi-person-circle"></i>
             </a>
@@ -24,7 +33,7 @@
           </li>
         </ul>
       </div>
-     
+
     </div>
   </div>
 </nav>

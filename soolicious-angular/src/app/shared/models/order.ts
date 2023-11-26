@@ -1,4 +1,5 @@
 import { Customer } from "./customer";
+import { Dessert } from "./dessert";
 
 export interface Order {
     id?: number;
@@ -6,4 +7,11 @@ export interface Order {
     orderTotal?: number;
     pickupMethod?: string;
     orderDate?: Date;
+    orderItems?: OrderItem[];
+}
+
+export interface OrderItem {
+    dessert?: Dessert;
+    quantityOrdered?: number;
+    price?: number;
 }

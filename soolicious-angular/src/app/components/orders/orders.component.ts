@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Order } from 'src/app/shared/models/order';
+import { Order, OrderItem } from 'src/app/shared/models/order';
 import { OrderService } from 'src/app/shared/service/order.service';
+import { OrderDetailsDialogComponent } from '../order-details-dialog/order-details-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-orders',
@@ -14,7 +16,7 @@ export class OrdersComponent implements OnInit {
   collectionSize = 0;
   orders: Order[] = [];
   filteredOrders?: Order[];
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getOrders();
@@ -38,5 +40,11 @@ export class OrdersComponent implements OnInit {
       (this.page - 1) * this.pageSize,
       (this.page - 1) * this.pageSize + this.pageSize,
     );
+  }
+
+  viewOrderItems(orderItems?: OrderItem[]) {
+    const modalRef = this.modalService.open(OrderDetailsDialogComponent);
+    modalRef.componentInstance.orderItems = orderItems;
+    modalRef.componentInstance.modalTitle = 'Order Details';      
   }
 }

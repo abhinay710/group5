@@ -1,0 +1,36 @@
+<!-- inventory-table.component.html -->
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ingredient Name</th>
+            <th scope="col">Date Purchased</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Expiry Date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Purchased By</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inventoryItem of filteredInventories; index as i" (click)="editInventoryItem(inventoryItem)">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ inventoryItem?.ingredient?.name }}</td>
+            <td>{{ inventoryItem.datePurchased | date }}</td>
+            <td>{{ inventoryItem.quantity }}</td>
+            <td>{{ inventoryItem.expiryDate | date }}</td>
+            <td>{{ inventoryItem.price | currency }}</td>
+            <td>{{ inventoryItem?.employee?.firstName }} {{ inventoryItem?.employee?.lastName }}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="filterInvs()">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filterInvs()">
+        <option [ngValue]="10">10 items per page</option>
+        <option [ngValue]="20">20 items per page</option>
+        <option [ngValue]="30">30 items per page</option>
+    </select>
+</div>
