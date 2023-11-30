@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.group5.soolicious.desserts.Dessert;
+import com.group5.soolicious.desserts.DessertEntity;
+
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -19,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrders() {
         Iterable<OrderEntity> iterable = orderRepo.findAll();
         List<Order> orders = new ArrayList<>();
-
+        mapper.getConfiguration().setAmbiguityIgnored(true);
         iterable.forEach(order -> {
             orders.add(mapper.map(order, Order.class));
         });

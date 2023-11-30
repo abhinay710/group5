@@ -65,4 +65,24 @@ export class EmployeesComponent implements OnInit {
       }
     });
   }
+
+  addEmployee() {
+    const modalRef = this.modalService.open(EmployeeDialogComponent);
+    modalRef.componentInstance.modalTitle = 'Add Employee';
+    modalRef.componentInstance.submitButtonLabel = 'Add';
+
+    modalRef.result.then((result: Employee) => {
+      if (result) {
+        this.empService.saveEmp(result).subscribe({
+          next: ((resp: Employee) => {
+            this.employees.push(resp);
+            this.filterEmps();
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
+  }
 }

@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer saveCustomer(Customer customer) throws Exception {
-        if (customerRepo.existsByEmailID(customer.getEmailID())) {
+        if (customer.getId() == null && customerRepo.existsByEmailID(customer.getEmailID())) {
             throw new Exception("User name already exists");
         }
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);

@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee saveEmployee(Employee employee) throws Exception {
-        if (empRepo.existsByEmailID(employee.getEmailID())) {
+        if (employee.getId() == null && empRepo.existsByEmailID(employee.getEmailID())) {
             throw new Exception("Employee with user name already exists");
         }
         EmployeeEntity employeeEntity = mapper.map(employee, EmployeeEntity.class);

@@ -62,6 +62,7 @@ export class DessertsComponent implements OnInit {
   editDessert(dessert: Dessert) {
     const modalRef = this.modalService.open(DessertDialogComponent);
     modalRef.componentInstance.dessert = { ...dessert };
+    modalRef.componentInstance.ingredients = [ ...this.ingredients ];
     modalRef.componentInstance.modalTitle = 'Edit Dessert';
     modalRef.componentInstance.submitButtonLabel = 'Update';
 

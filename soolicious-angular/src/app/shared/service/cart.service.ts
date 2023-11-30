@@ -43,15 +43,18 @@ export class CartService {
     this.setCartItems(cartItems);
   }
 
-  incrementCartItem(item: OrderItem): void {
+  incrementCartItem(item: OrderItem): OrderItem[] {
     let cartItems = this.getCartItems() || [];
     const existingItem = cartItems.find((cartItem) => cartItem.dessert?.id === item?.dessert?.id);
     if (existingItem) {
       existingItem.quantityOrdered!++;
     }
+
+    this.setCartItems(cartItems);
+    return cartItems;
   }
 
-  decrementCartItem(item: OrderItem): void {
+  decrementCartItem(item: OrderItem): OrderItem[] {
     let cartItems = this.getCartItems() || [];
     const existingItem = cartItems.find((cartItem) => cartItem.dessert?.id === item?.dessert?.id);
     if (existingItem && existingItem.quantityOrdered! > 1) {
@@ -59,6 +62,9 @@ export class CartService {
     } else {
       this.removeFromCart(item);
     }
+
+    this.setCartItems(cartItems);
+    return cartItems;
   }
 
   calculateTotalPrice(): number {

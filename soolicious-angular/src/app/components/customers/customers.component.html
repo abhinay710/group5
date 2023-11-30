@@ -3,11 +3,9 @@
 	  <h2>Customers</h2>
 	</div>
 	<div>
-	  <button class="btn btn-outline-primary" style="margin-right: 5px;" (click)="addCustomer()">Add
-		Customer</button>
+	  
 	</div>
   </div>
-  
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -25,10 +23,10 @@
 			<td>
 				{{ customer.firstName }}
 			</td>
-            <td>
+			<td>
 				{{ customer.lastName }}
 			</td>
-            <td>{{ customer.phoneNum }}</td>
+			<td>{{ customer.phoneNum }}</td>
 			<td>{{ customer.emailID }}</td>
 			<td>{{ customer.activeYN }}</td>
 		</tr>
@@ -36,12 +34,8 @@
 </table>
 
 <div class="d-flex justify-content-between p-2">
-	<ngb-pagination
-		[collectionSize]="collectionSize"
-		[(page)]="page"
-		[pageSize]="pageSize"
-		(pageChange)="filterCustomers()"
-	>
+	<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+		(pageChange)="filterCustomers()">
 	</ngb-pagination>
 
 	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filterCustomers()">

@@ -22,11 +22,11 @@ export class CartComponent implements OnInit {
   }
 
   incrementItem(item: OrderItem): void {
-    this.cartService.incrementCartItem(item);
+    this.cartItems = this.cartService.incrementCartItem(item);
   }
 
   decrementItem(item: OrderItem): void {
-    this.cartService.decrementCartItem(item);
+    this.cartItems = this.cartService.decrementCartItem(item);
   }
 
   calculateTotalPrice(): number {
