@@ -9,7 +9,7 @@ import lombok.extern.java.Log;
 public interface EmployeeService {
     List<Employee> getEmployees();
 
-    Employee saveEmployee(Employee employee);
+    Employee saveEmployee(Employee employee) throws Exception;
 
     Employee getById(Integer id) throws Exception;
 

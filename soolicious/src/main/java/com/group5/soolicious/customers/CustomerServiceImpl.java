@@ -29,7 +29,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer saveCustomer(Customer customer) {
+    public Customer saveCustomer(Customer customer) throws Exception {
+        if (customerRepo.existsByEmailID(customer.getEmailID())) {
+            throw new Exception("User name already exists");
+        }
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
         customerEntity = customerRepo.save(customerEntity);
 
@@ -56,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         login.setPassword(null);
-            login.setUserId(customer.getId());
+        login.setUserId(customer.getId());
         return login;
     }
 }

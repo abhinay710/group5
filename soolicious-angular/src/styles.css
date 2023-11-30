@@ -13,3 +13,13 @@ body {
 .table-hover tbody tr:hover {
   cursor: pointer!important;
 }
+
+.bg-img {
+  position: fixed;
+  min-height: 100%;
+  width: 100%;
+  background-image: url(assets/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

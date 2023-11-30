@@ -7,7 +7,7 @@ import com.group5.soolicious.login.Login;
 public interface CustomerService {
     List<Customer> getCustomers();
 
-    Customer saveCustomer(Customer customer);
+    Customer saveCustomer(Customer customer) throws Exception;
 
     Customer getById(Integer id) throws Exception;
 

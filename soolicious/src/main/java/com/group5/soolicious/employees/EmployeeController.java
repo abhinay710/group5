@@ -29,7 +29,7 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/save")
-    public Employee save(@RequestBody Employee employee) {
+    public Employee save(@RequestBody Employee employee) throws Exception {
         return employeeService.saveEmployee(employee);
     }
 }

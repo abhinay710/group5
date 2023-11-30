@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/save")
-    public Customer save(@RequestBody Customer customer) {
+    public Customer save(@RequestBody Customer customer) throws Exception {
         return customerService.saveCustomer(customer);
     }
 }
