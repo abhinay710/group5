@@ -1,40 +1,40 @@
 <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Gluten-Free</th>
-        <th scope="col">Sugar-Free</th>
-        <th scope="col">Price</th>
-        <th scope="col">Calories</th>
-        <th scope="col">Time to Prepare</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let dessert of filteredDesserts; index as i" (click)="editDessert(dessert)">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ dessert.name }}</td>
-        <td>{{ dessert.glutenFreeYN }}</td>
-        <td>{{ dessert.sugarFreeYN }}</td>
-        <td>{{ dessert.price | currency }}</td>
-        <td>{{ dessert.calories }}</td>
-        <td>{{ dessert.timeToPrepare }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gluten-Free</th>
+      <th scope="col">Sugar-Free</th>
+      <th scope="col">Price</th>
+      <th scope="col">Calories</th>
+      <th scope="col">Time to Prepare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dessert of filteredDesserts; index as i" (click)="editDessert(dessert)">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ dessert.name }}</td>
+      <td>{{ dessert.glutenFreeYN }}</td>
+      <td>{{ dessert.sugarFreeYN }}</td>
+      <td>{{ dessert.price | currency }}</td>
+      <td>{{ dessert.calories }}</td>
+      <td>{{ dessert.timeToPrepare }}</td>
+    </tr>
+  </tbody>
+</table>
 
 <div class="d-flex justify-content-between p-2">
-	<ngb-pagination
-		[collectionSize]="collectionSize"
-		[(page)]="page"
-		[pageSize]="pageSize"
-		(pageChange)="filterDesserts()"
-	>
-	</ngb-pagination>
+<ngb-pagination
+  [collectionSize]="collectionSize"
+  [(page)]="page"
+  [pageSize]="pageSize"
+  (pageChange)="filterDesserts()"
+>
+</ngb-pagination>
 
-	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filterDesserts()">
-		<option [ngValue]="10">10 items per page</option>
-		<option [ngValue]="20">20 items per page</option>
-		<option [ngValue]="30">30 items per page</option>
-	</select>
+<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filterDesserts()">
+  <option [ngValue]="10">10 items per page</option>
+  <option [ngValue]="20">20 items per page</option>
+  <option [ngValue]="30">30 items per page</option>
+</select>
 </div>

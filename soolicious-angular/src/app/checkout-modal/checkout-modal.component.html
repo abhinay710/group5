@@ -1,0 +1,35 @@
+<!-- checkout-modal.component.html -->
+
+<div class="modal-header">
+    <h4 class="modal-title">Checkout</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="deliveryOption">Select Delivery Option:</label>
+      <select class="form-control" id="deliveryOption" [(ngModel)]="deliveryOption">
+        <option value="delivery">Delivery</option>
+        <option value="pickup">Pickup</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="paymentOption">Select Payment Option:</label>
+      <select class="form-control" id="paymentOption" [(ngModel)]="paymentOption">
+        <option value="cash">Cash</option>
+        <option value="card">Card</option>
+      </select>
+    </div>
+  
+    <div *ngIf="paymentOption === 'card'" class="form-group">
+      <label for="cardDetails">Card Details:</label>
+      <!-- Add input fields for card details here -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="dismiss()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+  </div>
+  

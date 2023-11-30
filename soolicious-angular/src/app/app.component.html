@@ -4,6 +4,9 @@
     <div class="d-flex">
       <div class="ml-auto">
         <ul class="navbar-nav">
+          <li class="nav-item"  routerLinkActive="active">
+            <a routerLink="/cart" class="nav-link">Cart</a>
+          </li>
           <li *ngIf="loginService.isManagerLoggedIn() || loginService.isEmployeeLoggedIn()" class="nav-item"
             routerLinkActive="active">
             <a class="nav-link" routerLink="/desserts">Desserts</a>

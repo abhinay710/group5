@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginService } from './shared/service/login.service';
 import { DessertsComponent } from './components/desserts/desserts.component';
 import { InventoryItemsComponent } from './components/inventory-items/inventory-items.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full',redirectTo: 'home'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'inventory-items', component: InventoryItemsComponent, canActivate: [LoginService]},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [LoginService]},
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

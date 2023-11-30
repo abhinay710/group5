@@ -1,0 +1,9 @@
+/* desserts.component.css */
+
+.dessert-image {
+    width: 360px; /* Set your desired width */
+    height: 250px; /* Set your desired height */
+    object-fit: cover; /* This property ensures the image covers the entire container */
+    border-radius: 8px; /* Optional: add border-radius for rounded corners */
+  }
+  

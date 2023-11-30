@@ -20,6 +20,8 @@ import { DessertsComponent } from './components/desserts/desserts.component';
 import { DessertDialogComponent } from './components/dessert-dialog/dessert-dialog.component';
 import { InventoryItemsComponent } from './components/inventory-items/inventory-items.component';
 import { InventoryDialogComponent } from './components/inventory-dialog/inventory-dialog.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutModalComponent } from './checkout-modal/checkout-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { InventoryDialogComponent } from './components/inventory-dialog/inventor
     DessertsComponent,
     DessertDialogComponent,
     InventoryItemsComponent,
-    InventoryDialogComponent
+    InventoryDialogComponent,
+    CartComponent,
+    CheckoutModalComponent
   ],
   imports: [
     BrowserModule,

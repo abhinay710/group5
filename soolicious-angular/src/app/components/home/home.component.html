@@ -1,1 +1,40 @@
-<p>should implement it later</p>
+<!-- desserts.component.html -->
+
+<div class="row">
+    <div *ngFor="let dessert of filteredDesserts" class="col-md-4 mb-4">
+         
+        <!-- desserts.component.html -->
+        
+        <div class="card bg-light">
+          <img [src]="getDessertImage(dessert)" alt="{{ dessert.name }}" class="card-img-top dessert-image">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ dessert.name }}</h5>
+            <p class="card-text">
+              Gluten-Free: {{ dessert.glutenFreeYN }}<br>
+              Sugar-Free: {{ dessert.sugarFreeYN }}<br>
+              Price: {{ dessert.price | currency }}<br>
+              Calories: {{ dessert.calories }}<br>
+            </p>
+            <button class="btn btn-primary" (click)="addToCart(dessert)">Add to Cart</button>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="filterDesserts()"
+    >
+    </ngb-pagination>
+  
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filterDesserts()">
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="20">20 items per page</option>
+      <option [ngValue]="30">30 items per page</option>
+    </select>
+  </div>
+  
