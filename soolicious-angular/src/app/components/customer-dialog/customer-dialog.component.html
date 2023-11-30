@@ -22,15 +22,11 @@
         <label for="emailID">Email ID:</label>
         <input type="email" class="form-control" id="emailID" name="emailID" [(ngModel)]="customer.emailID" required>
       </div>
-      <!-- <div class="form-group">
+      <div class="form-group" *ngIf="loginService.isCustomerLoggedIn() || !loginService.isLoggedIn()">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="customer.password" [disabled]='true' required>
-      </div> -->
-      <div class="form-group">
-        <label for="createdOn">Created On:</label>
-        <input type="date" class="form-control" id="createdOn" name="createdOn" [ngModel]="formatDate(customer.createdOn!)" (ngModelChange)="updateCreatedOn($event)">
+        <input type="text" class="form-control" id="password" name="password" [(ngModel)]="customer.password" required>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="loginService.isManagerLoggedIn()">
         <label for="activeYN">Active Status:</label>
         <select class="form-control" id="activeYN" name="activeYN" [(ngModel)]="customer.activeYN" required>
           <option value="ACTIVE">Active</option>

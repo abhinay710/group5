@@ -27,7 +27,7 @@ export class LoginService  implements CanActivate {
   }
 
   public isLoggedIn() {
-    let customer = sessionStorage.getItem('user');
+    let customer = localStorage.getItem('user');
     if ((customer !== null)) {
       return true;
     }
@@ -35,7 +35,7 @@ export class LoginService  implements CanActivate {
   }
 
   public isManagerLoggedIn() {
-    let designation = sessionStorage.getItem('designation')!;
+    let designation = localStorage.getItem('designation')!;
     if (designation && designation === 'Manager') {
       return true;
     }
@@ -44,7 +44,7 @@ export class LoginService  implements CanActivate {
   }
 
   public isEmployeeLoggedIn() {
-    let designation = sessionStorage.getItem('designation');
+    let designation = localStorage.getItem('designation');
     if (designation && designation === 'Employee') {
       return true;
     }
@@ -53,7 +53,7 @@ export class LoginService  implements CanActivate {
   }
 
   public isCustomerLoggedIn() {
-    let designation = sessionStorage.getItem('designation');
+    let designation = localStorage.getItem('designation');
     if (designation && designation === 'Customer') {
       return true;
     }
@@ -62,8 +62,9 @@ export class LoginService  implements CanActivate {
   }
 
   public logOut() {
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('designation');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('designation');
     this.router.navigate(['/login']);
   }
 }

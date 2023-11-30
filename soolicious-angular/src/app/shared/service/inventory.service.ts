@@ -23,4 +23,8 @@ export class InventoryService {
   public saveInventory(inv: Inventory): Observable<Inventory> {
     return this.http.post<Inventory>(this.API + 'save', inv);
   }
+
+  public addIngredient(ingredient: Ingredient): Observable<Ingredient> {
+    return this.http.post<Ingredient>(this.API + 'add-ingredient', ingredient);
+  }
 }

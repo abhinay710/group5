@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dessert } from 'src/app/shared/models/dessert';
+import { Ingredient } from 'src/app/shared/models/inventory';
 
 @Component({
   selector: 'app-dessert-dialog',
@@ -8,7 +9,7 @@ import { Dessert } from 'src/app/shared/models/dessert';
   styleUrls: ['./dessert-dialog.component.css']
 })
 export class DessertDialogComponent {
-
+  @Input() ingredients: Ingredient[] = [];
   @Input() dessert: Dessert = {};
   @Input() modalTitle: string = 'Dessert Form';
   @Input() submitButtonLabel: string = 'Save';
@@ -23,5 +24,17 @@ export class DessertDialogComponent {
   onCloseClick() {
     // Handle close button click here, e.g., perform cleanup or additional actions
     this.activeModal.dismiss('Close click');
+  }
+
+  addDessertPrep() {
+    if (!this.dessert.dessertPreps) {
+      this.dessert.dessertPreps = [];
+    }
+
+    this.dessert.dessertPreps.push({ ingredient: this.ingredients[0], ingredientQuantity: 1 });
+  }
+
+  removeDessertPrep(index: number) {
+    this.dessert.dessertPreps?.splice(index, 1);
   }
 }

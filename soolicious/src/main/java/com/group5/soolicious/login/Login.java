@@ -10,5 +10,6 @@ import lombok.Setter;
 public class Login {
     private String emailID;
     private String designation;
+    private Integer userId;
     private String password;
 }

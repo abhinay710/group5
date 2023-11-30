@@ -26,6 +26,11 @@ public class OrderController {
         return orderService.getById(id);
     }
 
+    @GetMapping("customer/{id}")
+    public List<Order> getByCustomer(@PathVariable Integer id) {
+        return orderService.getByCustomerId(id);
+    }
+
     @PostMapping(value = "/save")
     public Order save(@RequestBody Order order) {
         return orderService.saveOrder(order);

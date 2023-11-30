@@ -8,4 +8,6 @@ public interface OrderService {
     Order saveOrder(Order order);
 
     Order getById(Integer id) throws Exception;
+
+    List<Order> getByCustomerId(Integer id);
 }

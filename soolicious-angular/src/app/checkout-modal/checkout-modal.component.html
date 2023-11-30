@@ -1,35 +1,61 @@
 <!-- checkout-modal.component.html -->
 
 <div class="modal-header">
-    <h4 class="modal-title">Checkout</h4>
-    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">Checkout</h4>
+  <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="deliveryOption">Select Delivery Option:</label>
+    <select class="form-control" id="deliveryOption" [(ngModel)]="order.pickupMethod!">
+      <option value="delivery">Delivery</option>
+      <option value="pickup">Pickup</option>
+    </select>
   </div>
-  <div class="modal-body">
+  <div class="form-group">
+    <label for="specialIns">Special Instructions:</label>
+    <input type="text" class="form-control" id="specialIns" name="specialIns" [(ngModel)]="order.specialInstructions!">
+  </div>
+
+  <div class="form-group">
+    <label for="paymentOption">Select Payment Option:</label>
+    <select class="form-control" id="paymentOption" [(ngModel)]="paymentOption">
+      <option value="cash">Cash</option>
+      <option value="card">Card</option>
+    </select>
+  </div>
+
+  <div *ngIf="paymentOption === 'card'" class="form-group">
     <div class="form-group">
-      <label for="deliveryOption">Select Delivery Option:</label>
-      <select class="form-control" id="deliveryOption" [(ngModel)]="deliveryOption">
-        <option value="delivery">Delivery</option>
-        <option value="pickup">Pickup</option>
+      <label for="cardType">Select Card Type:</label>
+      <select class="form-control" id="cardType" [(ngModel)]="order.debitOrCredit!">
+        <option value="credit">Credit</option>
+        <option value="debit">Debit</option>
       </select>
     </div>
-    
+
     <div class="form-group">
-      <label for="paymentOption">Select Payment Option:</label>
-      <select class="form-control" id="paymentOption" [(ngModel)]="paymentOption">
-        <option value="cash">Cash</option>
-        <option value="card">Card</option>
-      </select>
+      <label for="cardNumber">Card Number:</label>
+      <input type="number" class="form-control" id="cardNumber" name="cardNumber" [(ngModel)]="order.cardNumber!"
+        required pattern="[0-9]{16}">
     </div>
-  
-    <div *ngIf="paymentOption === 'card'" class="form-group">
-      <label for="cardDetails">Card Details:</label>
-      <!-- Add input fields for card details here -->
+
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input type="number" class="form-control" id="cvv" name="cvv" [(ngModel)]="order.cvv!" required
+        pattern="[0-9]{3}">
+    </div>
+
+    <div class="form-group">
+      <label for="expiry">Expiry Date (MM/YY)</label>
+      <input type="number" class="form-control" id="expiry" name="expiry" [(ngModel)]="order.expiryDate!" required
+        pattern="[0-9]{3}">
     </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="dismiss()">Close</button>
     <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
   </div>
-  
+</div>

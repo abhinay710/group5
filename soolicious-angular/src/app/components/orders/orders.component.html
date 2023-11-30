@@ -3,23 +3,34 @@
 	<thead>
 		<tr>
 			<th scope="col">#</th>
-			<th scope="col">Customer Name</th>
+			<th scope="col" *ngIf="!customerLogin">Customer Name</th>
 			<th scope="col">Price</th>
 			<th scope="col">PickUp Method</th>
+			<th scope="col">Special Instructions</th>
+			<th scope="col"> PickUp/Delivery Time Remaining</th>
+			<th scope="col"> Last update at</th>
 			<th scope="col">Ordered On</th>
+			<th scope="col" *ngIf="!customerLogin">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let order of filteredOrders; index as i" (click)="viewOrderItems(order?.orderItems)">
 			<th scope="row">{{ i + 1 }}</th>
-			<td>
+			<td *ngIf="!customerLogin">
 				{{ order.customer?.firstName }}
 			</td>
             <td>
 				{{ order.orderTotal | currency}}
 			</td>
 			<td>{{ order.pickupMethod }}</td>
-			<td>{{ order.orderDate | date:"MMM dd, yyyy 'at' hh:mm a" }}</td>
+			<td>{{ order.specialInstructions || 'N/A' }}</td>
+			<td>{{ order.timeToPickupOrDeliver || 'will be updated soon'}}</td>
+			<td>{{ order.lastUpdated}}</td>
+			<td>{{ order.orderDate | date:"mediumDate" }}</td>
+			<td *ngIf="!customerLogin">
+				<button class="btn btn-outline-primary">Update Time</button>
+
+			</td>
 		</tr>
 	</tbody>
 </table>

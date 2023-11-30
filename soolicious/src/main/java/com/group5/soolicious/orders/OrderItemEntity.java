@@ -28,7 +28,7 @@ public class OrderItemEntity {
     private DessertEntity dessert;
 
     @Column(name = "quantityOrdered")
-    private int quantityOrdered;
+    private Integer quantityOrdered;
 
     @Column(name = "price")
     private Double price;

@@ -5,7 +5,7 @@ import java.util.List;
 public interface InventoryService {
     List<Inventory> getInventories();
 
-    Inventory saveInventory(Inventory inventory);
+    Inventory saveInventory(Inventory inventory) throws Exception;
     List<Ingredient> getIngredients();
 
     Ingredient saveIngredient(Ingredient ingredient);

@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Login } from 'src/app/shared/models/login';
 import { LoginService } from 'src/app/shared/service/login.service';
+import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Customer } from 'src/app/shared/models/customer';
+import { CustomerService } from 'src/app/shared/service/customer.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +23,8 @@ export class LoginComponent implements OnInit {
     designation: ['Customer', Validators.required]
   });;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private fb: FormBuilder, private loginService: LoginService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal,
+    private fb: FormBuilder, private loginService: LoginService, private customerService: CustomerService) { }
 
   ngOnInit(): void {
   }
@@ -37,8 +42,9 @@ export class LoginComponent implements OnInit {
             this.invalidDetails = true;
           } else {
             this.login = response;
-            sessionStorage.setItem('user', response.emailID!.toString());
-            sessionStorage.setItem('designation', response.designation!);
+            localStorage.setItem('user', response.emailID!.toString());
+            localStorage.setItem('designation', response.designation!);
+            localStorage.setItem('userId', response.userId!.toString());
             this.navigate();
           }
         }),
@@ -54,7 +60,7 @@ export class LoginComponent implements OnInit {
   }
 
   navigate() {
-    const designation = sessionStorage.getItem('designation');
+    const designation = localStorage.getItem('designation');
     if (designation === 'Employee') {
       this.router.navigate([`/orders`], { relativeTo: this.activatedRoute });
     } else if (designation === 'Manager') {
@@ -62,5 +68,24 @@ export class LoginComponent implements OnInit {
     } else {
       this.router.navigate([`/home`], { relativeTo: this.activatedRoute });
     }
+  }
+
+  onRegisterClick(){
+    const modalRef = this.modalService.open(CustomerDialogComponent);
+    modalRef.componentInstance.modalTitle = 'Register';
+    modalRef.componentInstance.submitButtonLabel = 'register';
+
+    modalRef.result.then((result: Customer) => {
+      if (result) {
+        this.customerService.saveCust(result).subscribe({
+          next: ((resp: Customer) => {
+            console.log("registerd");
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
   }
 }

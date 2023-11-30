@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ingredient, Inventory } from 'src/app/shared/models/inventory';
 import { InventoryService } from 'src/app/shared/service/inventory.service';
 import { InventoryDialogComponent } from '../inventory-dialog/inventory-dialog.component';
+import { IngredientDialogComponent } from '../ingredient-dialog/ingredient-dialog.component';
 
 @Component({
   selector: 'app-inventory-items',
@@ -71,6 +72,40 @@ export class InventoryItemsComponent implements OnInit {
             if (index !== -1) {
               this.filteredInventories![index] = resp;
             }
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
+  }
+
+  addIngredient() {
+    const modalRef = this.modalService.open(IngredientDialogComponent);
+    modalRef.componentInstance.modalTitle = 'Add Ingredient';
+    modalRef.componentInstance.submitButtonLabel = 'Add Ingredient';
+
+    modalRef.result.then((result: Ingredient) => {
+      if (result) {
+          this.getIngredients();
+      }
+    });
+  }
+
+  addInventory() {
+    const modalRef = this.modalService.open(InventoryDialogComponent);
+    modalRef.componentInstance.ingredients = [ ...this.ingredients ];
+    modalRef.componentInstance.modalTitle = 'Add Inventory';
+    modalRef.componentInstance.submitButtonLabel = 'Add Inventory';
+
+    modalRef.result.then((result: Inventory) => {
+      if (result) {
+        result.employee = { id: Number(localStorage.getItem("userId")!) };
+        this.invService.saveInventory(result).subscribe({
+          next: ((resp: Inventory) => {
+            this.inventories.push(resp);
+            this.filterInvs();
           }),
           error: (err: HttpErrorResponse) => {
             console.log(err.error.message);

@@ -1,3 +1,4 @@
+import { Ingredient } from "./inventory";
 
 export interface Dessert {
     id?: number;
@@ -7,4 +8,10 @@ export interface Dessert {
     price?: number;
     calories?: number;
     timeToPrepare?: string;
+    dessertPreps?: DessertPrep[];
+}
+
+export interface DessertPrep {
+    ingredient?: Ingredient;
+    ingredientQuantity?: number;
 }

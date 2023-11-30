@@ -1,44 +1,67 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ modalTitle }}</h4>
-    <button type="button" class="close" (click)="onCloseClick()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form #dessertForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="dessert.name" required>
+  <h4 class="modal-title">{{ modalTitle }}</h4>
+  <button type="button" class="close" (click)="onCloseClick()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #dessertForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="dessert.name" required>
+    </div>
+    <div class="form-group">
+      <label for="glutenFreeYN">Gluten-Free:</label>
+      <select class="form-control" id="glutenFreeYN" name="glutenFreeYN" [(ngModel)]="dessert.glutenFreeYN" required>
+        <option value="YES">Yes</option>
+        <option value="NO">No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sugarFreeYN">Sugar-Free:</label>
+      <select class="form-control" id="sugarFreeYN" name="sugarFreeYN" [(ngModel)]="dessert.sugarFreeYN" required>
+        <option value="YES">Yes</option>
+        <option value="NO">No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" class="form-control" id="price" name="price" [(ngModel)]="dessert.price" required>
+    </div>
+    <div class="form-group">
+      <label for="calories">Calories:</label>
+      <input type="number" class="form-control" id="calories" name="calories" [(ngModel)]="dessert.calories" required>
+    </div>
+    <div class="form-group">
+      <label for="timeToPrepare">Time to Prepare:</label>
+      <input type="text" class="form-control" id="timeToPrepare" name="timeToPrepare"
+        [(ngModel)]="dessert.timeToPrepare" required>
+    </div>
+
+    <!-- Dessert Preparations -->
+    <div class="form-group">
+      <label for="dessertPreps">Dessert Preparations:</label>
+
+      <div *ngFor="let prep of dessert.dessertPreps; let i = index" class="d-flex align-items-center mb-3">
+        <div class="flex-grow-1 mr-2">
+          <select class="form-control" id="ingredient{{i}}" name="ingredient{{i}}" [(ngModel)]="prep.ingredient"
+            required>
+            <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">{{ ingredient.name }}</option>
+          </select>
+        </div>
+        <div class="flex-grow-1 mr-2">
+          <input type="number" class="form-control form-control-sm" id="ingredientQuantity{{i}}" name="ingredientQuantity{{i}}"
+            [(ngModel)]="prep.ingredientQuantity" required>
+        </div>
+        <button type="button" class="btn btn-outline-danger mr-2" (click)="removeDessertPrep(i)">Remove</button>
       </div>
-      <div class="form-group">
-        <label for="glutenFreeYN">Gluten-Free:</label>
-        <select class="form-control" id="glutenFreeYN" name="glutenFreeYN" [(ngModel)]="dessert.glutenFreeYN" required>
-          <option value="YES">Yes</option>
-          <option value="NO">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="sugarFreeYN">Sugar-Free:</label>
-        <select class="form-control" id="sugarFreeYN" name="sugarFreeYN" [(ngModel)]="dessert.sugarFreeYN" required>
-          <option value="YES">Yes</option>
-          <option value="NO">No</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="dessert.price" required>
-      </div>
-      <div class="form-group">
-        <label for="calories">Calories:</label>
-        <input type="number" class="form-control" id="calories" name="calories" [(ngModel)]="dessert.calories" required>
-      </div>
-      <div class="form-group">
-        <label for="timeToPrepare">Time to Prepare:</label>
-        <input type="text" class="form-control" id="timeToPrepare" name="timeToPrepare" [(ngModel)]="dessert.timeToPrepare" required>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
-        <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
-      </div>
-    </form>
-  </div>
+
+      <button type="button" class="btn btn-outline-primary" (click)="addDessertPrep()">Add Dessert Prep</button>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
+      <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
+    </div>
+  </form>
+</div>

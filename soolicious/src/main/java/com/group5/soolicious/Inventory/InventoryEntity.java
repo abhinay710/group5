@@ -23,7 +23,7 @@ public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "ingredientID")
@@ -42,6 +42,6 @@ public class InventoryEntity {
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "employeeID")
+    @JoinColumn(name = "employeeID", referencedColumnName = "id")
     private EmployeeEntity employee;
 }

@@ -66,4 +66,24 @@ export class CustomersComponent implements OnInit {
       }
     });
   }
+
+  addCustomer() {
+    const modalRef = this.modalService.open(CustomerDialogComponent);
+    modalRef.componentInstance.modalTitle = 'Add Customer';
+    modalRef.componentInstance.submitButtonLabel = 'Add';
+
+    modalRef.result.then((result: Customer) => {
+      if (result) {
+        this.customerService.saveCust(result).subscribe({
+          next: ((resp: Customer) => {
+            this.customers.push(resp);
+            this.filterCustomers();
+          }),
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+          }
+        });
+      }
+    });
+  }
 }

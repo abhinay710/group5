@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(Order order) {
         OrderEntity orderEntity = mapper.map(order, OrderEntity.class);
+
+        for(OrderItemEntity orderItemEntity :orderEntity.getOrderItems()) {
+            orderItemEntity.setOrder(orderEntity);
+        }
+
         orderEntity = orderRepo.save(orderEntity);
 
         return mapper.map(orderEntity, Order.class);
@@ -43,5 +48,17 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return mapper.map(order.get(), Order.class);
+    }
+
+    @Override
+    public List<Order> getByCustomerId(Integer id) {
+        List<OrderEntity> orderEntities = orderRepo.findByCustomerId(id);
+        List<Order> orders = new ArrayList<>();
+
+        orderEntities.forEach(order -> {
+            orders.add(mapper.map(order, Order.class));
+        });
+
+        return orders;
     }
 }

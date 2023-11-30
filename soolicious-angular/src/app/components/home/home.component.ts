@@ -5,6 +5,9 @@ import { Dessert } from 'src/app/shared/models/dessert';
 import { DessertService } from 'src/app/shared/service/dessert.service';
 import { DessertDialogComponent } from '../dessert-dialog/dessert-dialog.component';
 import { CartService } from 'src/app/shared/service/cart.service';
+import { OrderItem } from 'src/app/shared/models/order';
+import { LoginService } from 'src/app/shared/service/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +20,15 @@ export class HomeComponent implements OnInit {
   collectionSize = 0;
   desserts: Dessert[] = [];
   filteredDesserts?: Dessert[] = [];
-  constructor(private dessertService: DessertService, private modalService: NgbModal, private cartService: CartService) { }
+  constructor(private dessertService: DessertService, private modalService: NgbModal, private cartService: CartService,
+        private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { }
   
   ngOnInit(): void {
-    this.getDesserts();
+    if (this.loginService.isCustomerLoggedIn()) {
+      this.getDesserts();
+    } else {
+      this.router.navigate([`/orders`], { relativeTo: this.activatedRoute });
+    }
   }
 
   getDesserts() {

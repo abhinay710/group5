@@ -1,7 +1,7 @@
 package com.group5.soolicious.desserts;
 
-import com.group5.soolicious.employees.EmployeeEntity;
-import com.group5.soolicious.utils.converter.Status;
+import java.util.List;
+
 import com.group5.soolicious.utils.converter.StatusYN;
 
 import lombok.Getter;
@@ -24,5 +24,7 @@ public class Dessert {
 
     private String timeToPrepare;
 
-    private EmployeeEntity employee;
+//    private Employee employee;
+
+    private List<DessertPrep> dessertPreps;
 }

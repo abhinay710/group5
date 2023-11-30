@@ -7,12 +7,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.group5.soolicious.employees.Employee;
+import com.group5.soolicious.employees.EmployeeService;
+
 @Service
 public class InventoryServiceImpl implements InventoryService {
     @Autowired
     private InventoryRepo inventoryRepo;
     @Autowired
     private IngredientRepo ingredientRepo;
+    @Autowired
+    private EmployeeService employeeService;
     @Autowired
     private ModelMapper mapper;
 
@@ -28,11 +33,19 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public Inventory saveInventory(Inventory inventory) {
+    public Inventory saveInventory(Inventory inventory) throws Exception {
+        Employee employee = inventory.getEmployee();
+
+        if (inventory.getId() == null) {
+            employee = employeeService.getById(inventory.getEmployee().getId());
+        }
         InventoryEntity inventoryEntity = mapper.map(inventory, InventoryEntity.class);
         inventoryEntity = inventoryRepo.save(inventoryEntity);
 
-        return mapper.map(inventoryEntity, Inventory.class);
+        inventory = mapper.map(inventoryEntity, Inventory.class);
+        inventory.setEmployee(employee);
+
+        return inventory;
     }
 
     @Override

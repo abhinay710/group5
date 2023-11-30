@@ -3,6 +3,7 @@ package com.group5.soolicious.orders;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "customerID")
@@ -44,7 +45,7 @@ public class OrderEntity {
     private Double orderTotal;
 
     @Column(name = "debitOrcredit")
-    private String debitOrcredit;
+    private String debitOrCredit;
 
     @Column(name = "cardNumber")
     private String cardNumber;
@@ -67,6 +68,6 @@ public class OrderEntity {
     @Column(name = "lastUpdated")
     private String lastUpdated;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItemEntity> orderItems;
 }

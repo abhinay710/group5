@@ -59,6 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         login.setDesignation(employeeEntity.getDesignation());
         login.setPassword(null);
+        login.setUserId(employeeEntity.getId());
         return login;
     }
 }

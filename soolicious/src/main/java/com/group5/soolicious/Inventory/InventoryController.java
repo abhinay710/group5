@@ -22,7 +22,7 @@ public class InventoryController {
     }
 
     @PostMapping(value = "/save")
-    public Inventory save(@RequestBody Inventory inventory) {
+    public Inventory save(@RequestBody Inventory inventory) throws Exception {
         return inventoryService.saveInventory(inventory);
     }
 
@@ -31,7 +31,7 @@ public class InventoryController {
         return inventoryService.getIngredients();
     }
 
-    @PostMapping("ingredient/save")
+    @PostMapping("add-ingredient")
     public Ingredient saveIngredient(@RequestBody Ingredient ingredient) {
         return inventoryService.saveIngredient(ingredient);
     }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from 'src/app/shared/models/customer';
+import { LoginService } from 'src/app/shared/service/login.service';
 
 @Component({
   selector: 'app-customer-dialog',
@@ -12,16 +13,9 @@ export class CustomerDialogComponent {
   @Input() modalTitle: string = 'Customer Form';
   @Input() submitButtonLabel: string = 'Save';
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, public loginService: LoginService) { }
 
   onSubmit(): void {
     this.activeModal.close(this.customer);
-  }
-
-  formatDate(date: Date): string {
-    return date ? new Date(date).toISOString().split('T')[0] : 'null';
-  }
-  updateCreatedOn(value: string) {
-    this.customer.createdOn = new Date(value);
   }
 }

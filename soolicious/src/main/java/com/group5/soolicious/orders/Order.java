@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Order {
-    private int id;
+    private Integer id;
 
     private Customer customer;
 
@@ -23,7 +23,7 @@ public class Order {
 
     private Double orderTotal;
 
-    private String debitOrcredit;
+    private String debitOrCredit;
 
     private String cardNumber;
 

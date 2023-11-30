@@ -16,10 +16,30 @@ export class OrdersComponent implements OnInit {
   collectionSize = 0;
   orders: Order[] = [];
   filteredOrders?: Order[];
+  customerLogin = false;
   constructor(private orderService: OrderService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getOrders();
+    if (localStorage.getItem('designation') === 'Customer') {
+      this.customerLogin = true;
+      this.getOrdersByCustomerId(Number(localStorage.getItem('userId')));
+    } else {
+      this.customerLogin = false;
+      this.getOrders();
+    }
+  }
+
+  getOrdersByCustomerId(id: number) {
+    this.orderService.getOrderByCustId(id).subscribe({
+      next: ((resp: Order[]) => {
+        this.orders = resp;
+        this.collectionSize = resp.length; 
+        this.filterOrders();
+      }),
+      error: (err: HttpErrorResponse) => {
+        console.log(err.error.message);
+      }
+    });
   }
 
   getOrders() {

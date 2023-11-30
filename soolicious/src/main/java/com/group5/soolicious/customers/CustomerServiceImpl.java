@@ -56,6 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         login.setPassword(null);
+            login.setUserId(customer.getId());
         return login;
     }
 }

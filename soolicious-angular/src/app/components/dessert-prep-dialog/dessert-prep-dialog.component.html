@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" (click)="onCloseClick()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ingredient Name</th>
+          <th>description</th>
+          <th>Quantity Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dessertPrep of dessertPreps">
+          <td>{{ dessertPrep?.ingredient?.name }}</td>
+          <td>{{ dessertPrep?.ingredient?.description }}</td>
+          <td>{{ dessertPrep?.ingredientQuantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
+  </div>

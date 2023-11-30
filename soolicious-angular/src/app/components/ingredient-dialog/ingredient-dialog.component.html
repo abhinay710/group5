@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" (click)="onCloseClick()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #ingredientForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Ingredient Name:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="ingredient.name" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description"
+                [(ngModel)]="ingredient.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="ingredient.quantity"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="measurementUnit">Measurement Unit:</label>
+            <input type="text" class="form-control" id="measurementUnit" name="measurementUnit"
+                [(ngModel)]="ingredient.measurementUnit">
+        </div>
+        <!-- Add other fields as needed -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
+            <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
+        </div>
+    </form>
+</div>
