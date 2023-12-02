@@ -14,7 +14,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import com.group5.soolicious.employees.EmployeeEntity;
-import com.group5.soolicious.utils.converter.Status;
 import com.group5.soolicious.utils.converter.StatusYN;
 
 import lombok.Getter;

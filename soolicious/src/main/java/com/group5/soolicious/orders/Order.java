@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.group5.soolicious.customers.Customer;
-import com.group5.soolicious.customers.CustomerEntity;
 import com.group5.soolicious.employees.Employee;
 
 import lombok.Getter;
@@ -29,7 +28,7 @@ public class Order {
 
     private String cvv;
 
-    private Date expiryDate;
+    private String expiryDate;
 
     private String pickupMethod;
 

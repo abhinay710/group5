@@ -11,7 +11,9 @@ export interface Order {
     debitOrCredit?: string;
     cardNumber?: string;
     cvv?: string;
-    expiryDate?: Date;
+    expiryDate?: string;
+    expiryMonth?: string;  // Add this line
+  expiryYear?: string;
     pickupMethod?: string;
     timeToPickupOrDeliver?: string;
     specialInstructions?: string;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import org.modelmapper.ModelMapper;
 
-import com.group5.soolicious.customers.CustomerEntity;
 import com.group5.soolicious.login.Login;
 
 @Service

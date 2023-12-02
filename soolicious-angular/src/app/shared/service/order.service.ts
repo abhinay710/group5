@@ -26,4 +26,18 @@ export class OrderService {
   public getOrderByCustId(id: number): Observable<Order[]> {
     return this.http.get<Order[]>(this.API + 'customer/' + id);
   }
+  public updateTimeLeft(orderId: number, timeLeft: number): Observable<any> {
+    const url = `${this.API}/${orderId}/update-time-left`;
+    return this.http.put(url, { timeLeft });
+  }
+
+  public markAsDelivered(orderId: number): Observable<any> {
+    const url = `${this.API}/${orderId}/mark-as-delivered`;
+    return this.http.put(url, {});
+  }
+
+  public markAsPickedUp(orderId: number): Observable<any> {
+    const url = `${this.API}/${orderId}/mark-as-picked-up`;
+    return this.http.put(url, {});
+  }
 }

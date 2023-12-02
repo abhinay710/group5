@@ -14,6 +14,7 @@
       <option value="pickup">Pickup</option>
     </select>
   </div>
+
   <div class="form-group">
     <label for="specialIns">Special Instructions:</label>
     <input type="text" class="form-control" id="specialIns" name="specialIns" [(ngModel)]="order.specialInstructions!">
@@ -39,23 +40,56 @@
     <div class="form-group">
       <label for="cardNumber">Card Number:</label>
       <input type="number" class="form-control" id="cardNumber" name="cardNumber" [(ngModel)]="order.cardNumber!"
-        required pattern="[0-9]{16}">
+        required pattern="[0-9]{16}" #cardNumberInput="ngModel">
+    
+      <!-- Validation feedback -->
+      <div *ngIf="cardNumberInput.invalid && (cardNumberInput.dirty || cardNumberInput.touched)"
+       class="text-danger">
+        <div *ngIf="cardNumberInput.errors?.['required']">Card number is required.</div>
+        <div *ngIf="cardNumberInput.errors?.['pattern']">Invalid card number (must be 16 digits).</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="cvv">CVV</label>
       <input type="number" class="form-control" id="cvv" name="cvv" [(ngModel)]="order.cvv!" required
-        pattern="[0-9]{3}">
+        pattern="[0-9]{3}" #cvvInput="ngModel">
+      <!-- Validation feedback -->
+      <div *ngIf="cvvInput.invalid && (cvvInput.dirty || cvvInput.touched)"
+       class="text-danger">
+        <div *ngIf="cvvInput.errors?.['required']">CVV is required.</div>
+        <div *ngIf="cvvInput.errors?.['pattern']">Invalid CVV (must be 3 or 4 digits).</div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="expiry">Expiry Date (MM/YY)</label>
-      <input type="number" class="form-control" id="expiry" name="expiry" [(ngModel)]="order.expiryDate!" required
-        pattern="[0-9]{3}">
+      <label for="expiryMonth">Expiry Month</label>
+      <input type="number" class="form-control" id="expiryMonth" name="expiryMonth" [(ngModel)]="order.expiryMonth!"
+        required pattern="[0-9]{1,2}" #expiryMonthInput="ngModel">
+      <div *ngIf="expiryMonthInput.invalid && (expiryMonthInput.dirty || expiryMonthInput.touched)"
+        class="text-danger">
+        <div *ngIf="expiryMonthInput.errors?.['required']">Expiry month is required.</div>
+        <div *ngIf="expiryMonthInput.errors?.['pattern']">Invalid expiry month.</div>
+      </div>
     </div>
-  </div>
+    
+    <div class="form-group">
+      <label for="expiryYear">Expiry Year</label>
+      <input type="number" class="form-control" id="expiryYear" name="expiryYear" [(ngModel)]="order.expiryYear!"
+        required pattern="[0-9]{2}" #expiryYearInput="ngModel">
+      <div *ngIf="expiryYearInput.invalid && (expiryYearInput.dirty || expiryYearInput.touched)"
+        class="text-danger">
+        <div *ngIf="expiryYearInput.errors?.['required']">Expiry year is required.</div>
+        <div *ngIf="expiryYearInput.errors?.['pattern']">Invalid expiry year.</div>
+      </div>
+    </div>
+
+    <!-- Other form elements -->
+  <!-- </div> -->
+
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="dismiss()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="submit()" >Submit</button>  
+    <!-- [disabled]="!isValid()" -->
   </div>
 </div>

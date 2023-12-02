@@ -15,7 +15,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let order of filteredOrders; index as i" (click)="viewOrderItems(order?.orderItems)">
-			<th scope="row">{{ i + 1 }}</th>
+			<th scope="row">{{ i + 1 }}</th> 
 			<td *ngIf="!customerLogin">
 				{{ order.customer?.firstName }}
 			</td>
@@ -28,7 +28,7 @@
 			<td>{{ order.lastUpdated}}</td>
 			<td>{{ order.orderDate | date:"mediumDate" }}</td>
 			<td *ngIf="!customerLogin">
-				<button class="btn btn-outline-primary">Update Time</button>
+				<button class="btn btn-outline-primary">Update Status</button>
 
 			</td>
 		</tr>

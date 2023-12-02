@@ -1,4 +1,52 @@
 <div class="modal-header">
+  <h4 class="modal-title">{{ modalTitle }}</h4>
+  <button type="button" class="close" (click)="onCloseClick()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Dessert Name</th>
+        <th>Quantity Ordered</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let orderItem of orderItems">
+        <td>{{ orderItem?.dessert?.name }}</td>
+        <td>{{ orderItem?.quantityOrdered }}</td>
+        <td>{{ orderItem?.price | currency }}</td>
+      </tr> 
+      <tr>
+        <td class="total-price" colspan="3"><strong>Total:</strong>  {{ calculateTotalPrice() | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group mt-3">
+    <label for="timeLeft">Time Left to Pickup/Deliver (minutes):</label>
+    <input type="text" class="form-control" id="timeLeft" name="timeLeft" [(ngModel)]="newTime" required>
+  </div>
+  <div class="form-group mt-3">
+    <button type="button" class="btn btn-success" (click)="updatePickupOrDeliverTime()">Update Time</button>
+    <button type="button" class="btn btn-success" (click)="updateDeliveryStatus()">Mark as Delivered</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="modal-header">
     <h4 class="modal-title">{{ modalTitle }}</h4>
     <button type="button" class="close" (click)="onCloseClick()">
       <span aria-hidden="true">&times;</span>
@@ -11,6 +59,7 @@
           <th>Dessert Name</th>
           <th>Quantity Ordered</th>
           <th>Price</th>
+
         </tr>
       </thead>
       <tbody>
@@ -18,13 +67,23 @@
           <td>{{ orderItem?.dessert?.name }}</td>
           <td>{{ orderItem?.quantityOrdered }}</td>
           <td>{{ orderItem?.price | currency }}</td>
-        </tr>
+        </tr> 
         <tr>
             <td class="total-price" colspan="3"><strong>Total:</strong>  {{ calculateTotalPrice() | currency }}</td>
         </tr>
       </tbody>
     </table>
+     <div class="form-group mt-3">
+        <label for="timeLeft">Time Left to Pickup/Deliver (minutes):</label>
+        <input type="number" class="form-control" id="timeLeft" name="timeLeft" [(ngModel)]="" required>
+    </div>
+    <div class="form-group mt-3">
+        <button type="button" class="btn btn-success" (click)="updateDeliveryStatus()">Mark as Delivered</button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onCloseClick()">Close</button>
-  </div>
+</div>
+ 
+
+   -->

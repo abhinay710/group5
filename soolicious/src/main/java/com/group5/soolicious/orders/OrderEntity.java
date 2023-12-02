@@ -54,7 +54,7 @@ public class OrderEntity {
     private String cvv;
 
     @Column(name = "expiryDate")
-    private Date expiryDate;
+    private String expiryDate;
 
     @Column(name = "pickupMethod")
     private String pickupMethod;

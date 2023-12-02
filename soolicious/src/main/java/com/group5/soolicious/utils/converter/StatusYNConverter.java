@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-import com.group5.soolicious.utils.converter.StatusYN;
 
 @Converter(autoApply = true)
 public class StatusYNConverter implements AttributeConverter<StatusYN, Character> {
