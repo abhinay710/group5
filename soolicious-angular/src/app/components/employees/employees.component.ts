@@ -77,6 +77,7 @@ export class EmployeesComponent implements OnInit {
           next: ((resp: Employee) => {
             this.employees.push(resp);
             this.filterEmps();
+            this.getEmployees();
           }),
           error: (err: HttpErrorResponse) => {
             console.log(err.error.message);
