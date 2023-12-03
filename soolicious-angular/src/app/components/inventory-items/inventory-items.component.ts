@@ -106,6 +106,7 @@ export class InventoryItemsComponent implements OnInit {
           next: ((resp: Inventory) => {
             this.inventories.push(resp);
             this.filterInvs();
+            this.getInventories();
           }),
           error: (err: HttpErrorResponse) => {
             console.log(err.error.message);

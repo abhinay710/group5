@@ -24,6 +24,8 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutModalComponent } from './checkout-modal/checkout-modal.component';
 import { DessertPrepDialogComponent } from './components/dessert-prep-dialog/dessert-prep-dialog.component';
 import { IngredientDialogComponent } from './components/ingredient-dialog/ingredient-dialog.component';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -55,9 +57,15 @@ import { IngredientDialogComponent } from './components/ingredient-dialog/ingred
     NgbDropdownModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModalModule
+    NgbModalModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500
+    }),
+    
   ],
-  providers: [],
+  providers: [
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

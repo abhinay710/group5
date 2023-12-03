@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployees() {
-        Iterable<EmployeeEntity> iterable = empRepo.findAll();
+        Iterable<EmployeeEntity> iterable = empRepo.findAllByOrderByIdDesc();
         List<Employee> employees = new ArrayList<>();
 
         iterable.forEach(employee -> {

@@ -23,7 +23,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<Inventory> getInventories() {
-        Iterable<InventoryEntity> iterable = inventoryRepo.findAll();
+        Iterable<InventoryEntity> iterable = inventoryRepo.findAllByOrderByIdDesc();
         List<Inventory> inventories = new ArrayList<>();
 
         iterable.forEach(inventory -> {

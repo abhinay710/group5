@@ -44,7 +44,7 @@
 
       <div *ngFor="let prep of dessert.dessertPreps; let i = index" class="d-flex align-items-center mb-3">
         <div class="flex-grow-1 mr-2">
-          <select class="form-control" id="ingredient{{i}}" name="ingredient{{i}}" [(ngModel)]="prep.ingredient"
+          <select  [compareWith]="compareFn" class="form-control" id="ingredient{{i}}" name="ingredient{{i}}" [(ngModel)]="prep.ingredient"
             required>
             <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">{{ ingredient.name }}</option>
           </select>

@@ -17,9 +17,10 @@ public class DessertServiceImpl implements DessertService {
 
     @Override
     public List<Dessert> getDesserts() {
-        Iterable<DessertEntity> iterable = dessertRepo.findAll();
+        Iterable<DessertEntity> iterable = dessertRepo.findAllByOrderByIdDesc();
         List<Dessert> desserts = new ArrayList<>();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT).setAmbiguityIgnored(true);
+
         iterable.forEach(dessert -> {
             desserts.add(mapper.map(dessert, Dessert.class));
         });

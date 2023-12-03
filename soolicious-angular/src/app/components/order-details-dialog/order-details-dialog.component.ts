@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Order, OrderItem } from 'src/app/shared/models/order';
+import { LoginService } from 'src/app/shared/service/login.service';
 import { OrderService } from 'src/app/shared/service/order.service';
 
 @Component({
@@ -14,7 +16,8 @@ export class OrderDetailsDialogComponent {
   @Input() modalTitle: string = 'Order Items';
   newTime: string = '';
 
-  constructor(public activeModal: NgbActiveModal, private orderService: OrderService) {}
+  constructor(public activeModal: NgbActiveModal, private orderService: OrderService, public userService: LoginService,
+    private toastr: ToastrService) {}
 
   onCloseClick() {
     this.activeModal.dismiss('Close click');
@@ -31,9 +34,13 @@ export class OrderDetailsDialogComponent {
       // Call the service to save the updated order
       this.orderService.saveOrder(this.order).subscribe(
         (updatedOrder: any) => {
+          this.onCloseClick();
+          this.toastr.success('Time updated successfully', 'Success');
           console.log('Time left for pickup or delivery updated successfully:', updatedOrder);
         },
         (error: any) => {
+          this.toastr.error('Error updating time', 'Try Again');
+
           console.error('Error updating time left for pickup or delivery:', error);
         }
       );
@@ -48,6 +55,8 @@ export class OrderDetailsDialogComponent {
     // Call the service to save the updated order
     this.orderService.saveOrder(this.order).subscribe(
       (updatedOrder: any) => {
+        this.onCloseClick();
+        this.toastr.success('Status updated successfully', 'Success');
         console.log('Delivery status updated successfully:', updatedOrder);
       },
       (error: any) => {

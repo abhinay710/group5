@@ -37,4 +37,9 @@ export class DessertDialogComponent {
   removeDessertPrep(index: number) {
     this.dessert.dessertPreps?.splice(index, 1);
   }
+  compareFn = this._compareFn.bind(this);
+  
+  _compareFn(a:Ingredient, b:Ingredient): boolean {
+    return a && b && a.id === b.id;
+ }
 }

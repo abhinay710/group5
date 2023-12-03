@@ -42,7 +42,6 @@ export class CustomersComponent implements OnInit {
     );
   }
 
-
   editCustomer(customer: Customer) {
     const modalRef = this.modalService.open(CustomerDialogComponent);
     modalRef.componentInstance.customer = { ...customer };

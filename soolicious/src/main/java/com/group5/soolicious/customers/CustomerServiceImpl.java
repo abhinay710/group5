@@ -19,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getCustomers() {
-        Iterable<CustomerEntity> iterable = customerRepo.findAll();
+        Iterable<CustomerEntity> iterable = customerRepo.findAllByOrderByIdDesc();
         List<Customer> customers = new ArrayList<>();
 
         iterable.forEach(customer -> {

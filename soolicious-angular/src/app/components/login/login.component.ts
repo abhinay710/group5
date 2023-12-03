@@ -8,6 +8,7 @@ import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.comp
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from 'src/app/shared/models/customer';
 import { CustomerService } from 'src/app/shared/service/customer.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
   });;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal,
-    private fb: FormBuilder, private loginService: LoginService, private customerService: CustomerService) { }
+    private fb: FormBuilder, private loginService: LoginService, private customerService: CustomerService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
       login.designation = this.loginForm.get('designation')?.value;
       this.loginService.login(login).subscribe({
         next: ((response: Login) => {
+          this.toastr.success('Login Successful', 'Success');
+
           if (response === null) {
             this.invalidDetails = true;
           } else {
@@ -50,6 +54,7 @@ export class LoginComponent implements OnInit {
         }),
         error: (err: HttpErrorResponse) => {
           this.invalidDetails = true;
+          this.toastr.error('Invalid Details', 'Error');
         }
       });
       
@@ -79,10 +84,10 @@ export class LoginComponent implements OnInit {
       if (result) {
         this.customerService.saveCust(result).subscribe({
           next: ((resp: Customer) => {
-            console.log("registerd");
+            this.toastr.success('Registered Successfully', 'Success');
           }),
           error: (err: HttpErrorResponse) => {
-            console.log(err.error.message);
+            this.toastr.error(err.message, 'Error');
           }
         });
       }

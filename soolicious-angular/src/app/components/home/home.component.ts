@@ -8,6 +8,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
 import { OrderItem } from 'src/app/shared/models/order';
 import { LoginService } from 'src/app/shared/service/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   desserts: Dessert[] = [];
   filteredDesserts?: Dessert[] = [];
   constructor(private dessertService: DessertService, private modalService: NgbModal, private cartService: CartService,
-        private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { }
+        private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute, 
+        private toastr: ToastrService) { }
   
   ngOnInit(): void {
     if (this.loginService.isCustomerLoggedIn()) {
@@ -53,6 +55,7 @@ export class HomeComponent implements OnInit {
 
   addToCart(dessert: Dessert) {
     this.cartService.addToCart(dessert);
+    this.toastr.success('Item Added to cart', 'Success');
   }
   getDessertImage(dessert: Dessert): string {
     // Placeholder URLs, replace with actual URLs

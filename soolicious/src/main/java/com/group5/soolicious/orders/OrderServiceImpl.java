@@ -59,6 +59,10 @@ public class OrderServiceImpl implements OrderService {
             orders.add(mapper.map(order, Order.class));
         });
 
+        orders.sort((o1, o2) -> {
+            return o2.getId().compareTo(o1.getId());
+        });
+
         return orders;
     }
 }

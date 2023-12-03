@@ -7,4 +7,9 @@ export interface Customer {
     password?: string;
     createdOn?: Date;
     activeYN?: string;
+    aptNo?: string;
+    zipCode?: string;
+    city?: string;
+    streetName?: string;
+    state?: string;
 }

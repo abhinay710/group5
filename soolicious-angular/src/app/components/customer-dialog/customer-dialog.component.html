@@ -1,43 +1,63 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ modalTitle }}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="customer.firstName" required>
-      </div>
-      <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="customer.lastName" required>
-      </div>
-      <div class="form-group">
-        <label for="phoneNum">Phone Number:</label>
-        <input type="tel" class="form-control" id="phoneNum" name="phoneNum" [(ngModel)]="customer.phoneNum" required>
-      </div>
-      <div class="form-group">
-        <label for="emailID">Email ID:</label>
-        <input type="email" class="form-control" id="emailID" name="emailID" [(ngModel)]="customer.emailID" required>
-      </div>
-      <div class="form-group" *ngIf="loginService.isCustomerLoggedIn() || !loginService.isLoggedIn()">
-        <label for="password">Password:</label>
-        <input type="text" class="form-control" id="password" name="password" [(ngModel)]="customer.password" required>
-      </div>
-      <div class="form-group" *ngIf="loginService.isManagerLoggedIn()">
-        <label for="activeYN">Active Status:</label>
-        <select class="form-control" id="activeYN" name="activeYN" [(ngModel)]="customer.activeYN" required>
-          <option value="ACTIVE">Active</option>
-          <option value="INACTIVE">Inactive</option>
-        </select>
-      </div>
-      <!-- Add other form fields for any remaining properties -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark"
-        (click)="activeModal.dismiss('Cancel click')">Cancel</button>
-        <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
-      </div>
-    </form>
-  </div>
+  <h4 class="modal-title">{{ modalTitle }}</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="customer.firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="customer.lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="phoneNum">Phone Number:</label>
+      <input type="tel" class="form-control" id="phoneNum" name="phoneNum" [(ngModel)]="customer.phoneNum" required>
+    </div>
+    <div class="form-group">
+      <label for="aptNo">Apartment No:</label>
+      <input type="text" class="form-control" id="aptNo" name="aptNo" [(ngModel)]="customer.aptNo" required>
+    </div>
+    <div class="form-group">
+      <label for="zipcode">Zip Code:</label>
+      <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="customer.zipCode" required>
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" class="form-control" id="city" name="city" [(ngModel)]="customer.city" required>
+    </div>
+    <div class="form-group">
+      <label for="streetName">Street Name:</label>
+      <input type="text" class="form-control" id="streetName" name="streetName" [(ngModel)]="customer.streetName"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="text" class="form-control" id="state" name="state" [(ngModel)]="customer.state" required>
+    </div>
+    <div class="form-group">
+      <label for="emailID">Email ID:</label>
+      <input type="email" class="form-control" id="emailID" name="emailID" [(ngModel)]="customer.emailID" required>
+    </div>
+    <div class="form-group" *ngIf="loginService.isCustomerLoggedIn() || !loginService.isLoggedIn()">
+      <label for="password">Password:</label>
+      <input type="text" class="form-control" id="password" name="password" [(ngModel)]="customer.password" required>
+    </div>
+    <div class="form-group" *ngIf="loginService.isManagerLoggedIn()">
+      <label for="activeYN">Active Status:</label>
+      <select class="form-control" id="activeYN" name="activeYN" [(ngModel)]="customer.activeYN" required>
+        <option value="ACTIVE">Active</option>
+        <option value="INACTIVE">Inactive</option>
+      </select>
+    </div>
+    <!-- Add other form fields for any remaining properties -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel click')">Cancel</button>
+      <button type="submit" class="btn btn-primary">{{ submitButtonLabel }}</button>
+    </div>
+  </form>
+</div>

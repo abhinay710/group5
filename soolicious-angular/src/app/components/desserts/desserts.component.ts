@@ -96,6 +96,7 @@ export class DessertsComponent implements OnInit {
           next: ((resp: Dessert) => {
             this.desserts.push(resp);
             this.filterDesserts();
+            this.getDesserts();
           }),
           error: (err: HttpErrorResponse) => {
             console.log(err.error.message);
