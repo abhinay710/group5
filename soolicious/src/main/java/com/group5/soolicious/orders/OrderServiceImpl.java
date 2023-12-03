@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrders() {
-        Iterable<OrderEntity> iterable = orderRepo.findAll();
+        Iterable<OrderEntity> iterable = orderRepo.findAllByOrderByIdDesc();
         List<Order> orders = new ArrayList<>();
         mapper.getConfiguration().setAmbiguityIgnored(true);
         iterable.forEach(order -> {

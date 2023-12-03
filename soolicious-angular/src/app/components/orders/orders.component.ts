@@ -62,9 +62,10 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  viewOrderItems(orderItems?: OrderItem[]) {
+  viewOrderItems(order?: Order) {
     const modalRef = this.modalService.open(OrderDetailsDialogComponent);
-    modalRef.componentInstance.orderItems = orderItems;
+    modalRef.componentInstance.order = order;
+    modalRef.componentInstance.orderItems = order?.orderItems;
     modalRef.componentInstance.modalTitle = 'Order Details';      
   }
 }

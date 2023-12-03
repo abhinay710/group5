@@ -57,21 +57,22 @@ export class CheckoutModalComponent {
     this.activeModal.dismiss('Close button clicked');
   }
 
-  isValid(): boolean {
-    const cardNumber = this.order.cardNumber as string;
-    const cvv = this.order.cvv as string;
+  // isValid(): boolean {
+  //   const cardNumber = this.order.cardNumber as string;
+  //   const cvv = this.order.cvv as string;
   
-    if (this.paymentOption === 'card') {
-      // Check card number validity (16 digits)
-      const isCardNumberValid = /^[0-9]{16}$/.test(cardNumber);
-      const isCvvValid = /^[0-9]{3,4}$/.test(cvv);
-      const expiryDateControl = this.checkoutForm.get('expiryDate');
-      const isExpiryDateValid = expiryDateControl ? expiryDateControl.valid : false;
+  //   if (this.paymentOption === 'card') {
+  //     // Check card number validity (16 digits)
+  //     const isCardNumberValid = /^[0-9]{16}$/.test(cardNumber);
+  //     const isCvvValid = /^[0-9]{3,4}$/.test(cvv);
+  //     const expiryDateControl = this.order.expiryMonth;
+             
+  //     const isExpiryDateValid = expiryDateControl ? expiryDateControl.valid : false;
   
-      return isCardNumberValid && isCvvValid && isExpiryDateValid;
-    }
-    return true;
-  }
+  //     return isCardNumberValid && isCvvValid && isExpiryDateValid;
+  //   }
+  //   return true;
+  // }
   
   
  
@@ -84,7 +85,7 @@ export class CheckoutModalComponent {
     this.order.orderTotal = this.orderTotal;
 
     // Concatenate expiry month and year with '/'
-    this.order.expiryDate = `${this.checkoutForm.get('expiryMonth')?.value}/${this.checkoutForm.get('expiryYear')?.value}`;
+    this.order.expiryDate = this.order.expiryMonth+'/'+this.order.expiryYear;
 
     this.orderService.saveOrder(this.order).subscribe({
       next: ((resp: Order) => {
